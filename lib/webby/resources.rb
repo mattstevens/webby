@@ -106,6 +106,7 @@ module Webby::Resources
       rgxp = %r/\A(?:#{::Webby.site.content_dir}|#{::Webby.site.layout_dir})\//o
       dirname = ::File.dirname(filename)
       dirname << '/' if dirname.index(?/) == nil
+      dirname << '/' if dirname == ::Webby.site.content_dir || dirname == ::Webby.site.layout_dir
       dirname.sub(rgxp, '')
     end
 
