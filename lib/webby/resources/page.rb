@@ -59,7 +59,7 @@ class Page < Resource
       @url = File.dirname(@url)
       @url << '/' unless %r/\/$/ =~ @url
     end
-    @url.gsub!(/\.html$/, '') if _meta_data['exclude_html_extention']
+    @url.gsub!(/\.html$/, '') if _meta_data['exclude_html_extension']
     @url
   end
 
@@ -79,7 +79,7 @@ class Page < Resource
     if _meta_data.has_key? 'layout'
       lyt = ::Webby::Resources.find_layout(_meta_data['layout'])
       lyt_ext = lyt ? lyt.extension : nil
-      return nil if lyt_ext == "html" && _meta_data['exclude_html_extention'] && filename != "index"
+      return nil if lyt_ext == "html" && _meta_data['exclude_html_extension'] && filename != "index"
       return lyt_ext if lyt_ext
     end
 
