@@ -54,6 +54,21 @@ Loquacious.configuration_for(:webby) {
   })
 
   desc <<-__
+    A set of default meta-data values that are added to every page in directories
+    matching an expression.
+    |
+    |   SITE.dir_defaults['blog'] = {
+    |     'layout' => 'post',
+    |     'filter' => ['erb', 'textile']
+    |   }
+    |
+    Now, every page in the blog directory will be run through the ERB filter
+    and then the Textile filter. Specific pages can override the set of filters
+    or omit them altogether as needed.
+  __
+  dir_defaults({})
+
+  desc <<-__
     Defines the default page attribute that will be used by the
     'link_to_page' method to find other pages in the site. If this value
     is set to :title, then the title found in the page meta-data is

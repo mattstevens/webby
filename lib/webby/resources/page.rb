@@ -23,7 +23,13 @@ class Page < Resource
       @_meta_data = MetaFile.meta_data(@path)
       @_meta_data ||= {}
     end
-    @_meta_data = ::Webby.site.page_defaults.merge(@_meta_data)
+
+    defaults = ::Webby.site.page_defaults
+    ::Webby.site.dir_defaults.each_pair do |dir, dir_defaults|
+      defaults.merge!(dir_defaults) if @dir.match(dir)
+    end
+
+    @_meta_data = defaults.merge(@_meta_data)
     @_meta_data.sanitize!
   end
 
