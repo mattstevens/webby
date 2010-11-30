@@ -26,7 +26,7 @@ class Page < Resource
 
     defaults = ::Webby.site.page_defaults
     ::Webby.site.dir_defaults.each_pair do |dir, dir_defaults|
-      defaults.merge!(dir_defaults) if @dir.match(dir)
+      defaults = defaults.merge(dir_defaults) if @dir.match(dir)
     end
 
     @_meta_data = defaults.merge(@_meta_data)
