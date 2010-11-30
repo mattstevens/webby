@@ -4,10 +4,10 @@ require 'set'
 # :stopdoc:
 class ERB
   module Util
-    HTML_ESCAPE = { '&' => '&amp;', '"' => '&quot;', '>' => '&gt;', '<' => '&lt;' }
+    HTML_ESCAPE_SUBS = { '&' => '&amp;', '"' => '&quot;', '>' => '&gt;', '<' => '&lt;' }
 
     def html_escape(s)
-      s.to_s.gsub(/[&\"><]/) { |special| HTML_ESCAPE[special] }
+      s.to_s.gsub(/[&\"><]/) { |special| HTML_ESCAPE_SUBS[special] }
     end
   end
 end
@@ -34,7 +34,7 @@ module TagHelper
   #   # => "&lt;&lt; Accept &amp; Checkout"
   #
   def escape_once( html )
-    html.to_s.gsub(/[\"><]|&(?!([a-zA-Z]+|(#\d+));)/) { |special| ERB::Util::HTML_ESCAPE[special] }
+    html.to_s.gsub(/[\"><]|&(?!([a-zA-Z]+|(#\d+));)/) { |special| ERB::Util::HTML_ESCAPE_SUBS[special] }
   end
 
   private
